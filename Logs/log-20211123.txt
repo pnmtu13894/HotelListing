@@ -1,0 +1,10 @@
+[2021-11-23 00:07:33 INF] Application is starting
+[2021-11-23 00:07:34 INF] Now listening on: https://localhost:5001
+[2021-11-23 00:07:34 INF] Now listening on: http://localhost:5000
+[2021-11-23 00:07:34 INF] Application started. Press Ctrl+C to shut down.
+[2021-11-23 00:07:34 INF] Hosting environment: Development
+[2021-11-23 00:07:34 INF] Content root path: /Users/tupham/RiderProjects/HotelListing/HotelListing
+[2021-11-23 00:07:34 INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/index.html - -
+[2021-11-23 00:07:35 INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 224.3186ms
+[2021-11-23 00:07:35 INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/v1/swagger.json - -
+[2021-11-23 00:07:35 INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 191.0000ms
