@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using HotelListing.Configurations;
+using HotelListing.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,6 +32,10 @@ namespace HotelListing
         {
             services.AddControllers();
 
+            services.AddDbContext<DatabaseContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("HotelListingDB"))
+            );
+            
             services.AddCors(o =>
             {
                 o.AddPolicy("CORSPolicies", builder =>
@@ -37,6 +45,8 @@ namespace HotelListing
                         .AllowAnyHeader();
                 });
             });
+
+            services.AddAutoMapper(typeof(MapperInitializer));
             
             services.AddSwaggerGen(c =>
             {

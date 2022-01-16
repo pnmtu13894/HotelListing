@@ -1,0 +1,24 @@
+﻿<Properties StartupConfiguration="{9FC27CB5-6363-4BBC-A851-80CDE1F3BAF4}|Default">
+  <MonoDevelop.Ide.ItemProperties.HotelListing PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="HotelListing" expanded="True">
+            <Node name="HotelListing" expanded="True">
+              <Node name="DataAccess" expanded="True">
+                <Node name="DatabaseContext.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
