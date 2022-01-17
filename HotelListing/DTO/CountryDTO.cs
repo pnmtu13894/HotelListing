@@ -9,7 +9,7 @@ namespace HotelListing.DTO
     {
         public int Id { get; set; }
         
-        public virtual IList<Hotel> Hotels { get; set; }
+        public IList<HotelDTO> Hotels { get; set; }
     }
 
     public class CreateCountryDTO
