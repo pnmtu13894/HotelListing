@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using HotelListing.Configurations;
 using HotelListing.DataAccess;
+using HotelListing.IRepository;
+using HotelListing.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ILogger = Serilog.ILogger;
 
 namespace HotelListing
 {
@@ -47,6 +50,10 @@ namespace HotelListing
             });
 
             services.AddAutoMapper(typeof(MapperInitializer));
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton(Serilog.Log.Logger);
+            services.AddLogging();
             
             services.AddSwaggerGen(c =>
             {
@@ -73,7 +80,10 @@ namespace HotelListing
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+               endpoints.MapControllers(); 
+            });
         }
     }
 }

@@ -32,7 +32,7 @@ namespace HotelListing
                 .Enrich.FromLogContext()
                 .WriteTo.MSSqlServer(connectionStr, new MSSqlServerSinkOptions() { TableName = "Log" }, null, null,
                     LogEventLevel.Information, null, null, null)
-                //.MinimumLevel.Override("Microsoft", LogEventLevel.Error)
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Debug)
                 .CreateLogger();
 
             try
