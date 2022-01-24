@@ -1,6 +1,7 @@
 ﻿using HotelListing.DataAccess;
 using HotelListing.IRepository;
 using HotelListing.Repository;
+using HotelListing.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +28,7 @@ namespace HotelListing.Extensions
         public static void AddUnitOfWorksRepo(this IServiceCollection services)
         {
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IAuthenticationManager, AuthenticationManager>();
         }
 
         public static void ConfigureJWT(this IServiceCollection services, IConfiguration configuration)
