@@ -12,18 +12,11 @@ using System.Threading.Tasks;
 namespace HotelListing.Controllers
 {
     [Route("[controller]")]
-    [ApiController]
-    public class HotelController : ControllerBase
+    public class HotelController : BaseApiController
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly ILogger<HotelController> _logger;
-        private readonly IMapper _mapper;
-
-        public HotelController(IUnitOfWork unitOfWork, ILogger<HotelController> logger, IMapper mapper)
+        public HotelController(IUnitOfWork unitOfWork, ILogger<BaseApiController> logger, IMapper mapper) 
+            : base(unitOfWork, logger, mapper)
         {
-            _unitOfWork = unitOfWork;
-            _logger = logger;
-            _mapper = mapper;
         }
 
         [HttpGet]

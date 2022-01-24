@@ -13,20 +13,12 @@ using Serilog;
 namespace HotelListing.Controllers
 {
     [Route("[controller]")]
-    [ApiController]
-    public class CountryController : ControllerBase
+    public class CountryController : BaseApiController
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly ILogger<CountryController> _logger;
-        private readonly IMapper _mapper;
-
-        public CountryController(IUnitOfWork unitOfWork, ILogger<CountryController> logger, IMapper mapper)
+        public CountryController(IUnitOfWork unitOfWork, ILogger<BaseApiController> logger, IMapper mapper) : base(unitOfWork, logger, mapper)
         {
-            _unitOfWork = unitOfWork;
-            _logger = logger;
-            _mapper = mapper;
         }
-        
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

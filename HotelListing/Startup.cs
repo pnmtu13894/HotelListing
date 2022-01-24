@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HotelListing.Configurations;
 using HotelListing.DataAccess;
+using HotelListing.Extensions;
 using HotelListing.IRepository;
 using HotelListing.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,11 @@ namespace HotelListing
         {
             services.AddControllers();
 
+            services.AddAuthentication();
+            services.ConfigureIdentity();
+            services.AddUnitOfWorksRepo();
+            services.ConfigureJWT(Configuration);
+
             services.AddDbContext<DatabaseContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("HotelListingDB"))
             );
@@ -50,7 +56,6 @@ namespace HotelListing
 
             services.AddAutoMapper(typeof(MapperInitializer));
 
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
             //services.AddSingleton(Serilog.Log.Logger);
 
             services.AddControllers().AddNewtonsoftJson(options =>
