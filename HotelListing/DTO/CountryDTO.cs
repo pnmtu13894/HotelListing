@@ -21,4 +21,9 @@ namespace HotelListing.DTO
         [StringLength(maximumLength: 3, ErrorMessage = "Short name is too long")]
         public string ShortName { get; set; }
     }
+
+    public class UpdateCountryDTO : CreateCountryDTO
+    {
+
+    }
 }
