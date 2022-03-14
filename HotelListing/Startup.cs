@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using HotelListing.Configurations;
+using HotelListing.CustomExceptionMiddleware;
 using HotelListing.DataAccess;
 using HotelListing.Extensions;
 using HotelListing.IRepository;
@@ -75,6 +76,9 @@ namespace HotelListing
             
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelListing v1"));
+
+            app.UseMiddleware<ExceptionMiddleware>();
+            //app.ConfigureExceptionHandler();
 
             app.UseCors("AllowAll");
             

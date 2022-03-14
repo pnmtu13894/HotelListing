@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using HotelListing.DataAccess;
 using HotelListing.DTO;
+using HotelListing.DTO.Paging;
 using HotelListing.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -24,11 +25,11 @@ namespace HotelListing.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllCountries()
+        public async Task<IActionResult> GetAllCountries([FromQuery] RequestParam requestParams)
         {
             try
             {
-                var countries = await _unitOfWork.Countries.GetAll();
+                var countries = await _unitOfWork.Countries.GetPagedList(requestParams);
                 var results = _mapper.Map<IList<CountryDTO>>(countries);
 
 

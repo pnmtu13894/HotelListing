@@ -4,8 +4,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using HotelListing.DataAccess;
+using HotelListing.DTO.Paging;
 using HotelListing.IRepository;
 using Microsoft.EntityFrameworkCore;
+using X.PagedList;
 
 namespace HotelListing.Repository
 {
@@ -84,6 +86,21 @@ namespace HotelListing.Repository
         {
             _db.Attach(entity);
             _dbContext.Entry(entity).State = EntityState.Modified;
+        }
+
+        public async Task<X.PagedList.IPagedList<T>> GetPagedList(RequestParam requestParams, List<string> includes = null)
+        {
+            IQueryable<T> query = _db;
+
+            if (includes != null)
+            {
+                foreach (var incProp in includes)
+                {
+                    query = query.Include(incProp);
+                }
+            }
+
+            return await query.AsNoTracking().ToPagedListAsync(requestParams.PageNumber, requestParams.PageSize);
         }
     }
 }
