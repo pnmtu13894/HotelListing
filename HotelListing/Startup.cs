@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreRateLimit;
 using HotelListing.Configurations;
 using HotelListing.CustomExceptionMiddleware;
 using HotelListing.DataAccess;
@@ -34,8 +35,6 @@ namespace HotelListing
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
             services.AddAuthentication();
             services.ConfigureIdentity();
             services.AddUnitOfWorksRepo();
@@ -64,6 +63,12 @@ namespace HotelListing
                 );
 
             services.AddSwaggerDoc();
+
+            services.AddMemoryCache();
+            services.ConfigureRateLimiting();
+            services.AddHttpContextAccessor();
+            
+            services.ConfigureHttpCacheHeaders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,6 +94,11 @@ namespace HotelListing
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseResponseCaching();
+            app.UseHttpCacheHeaders();
+            // app.UseIpRateLimiting();
+            // app.UseIpRateLimiting();
+            
             app.UseEndpoints(endpoints =>
             {
                endpoints.MapControllers(); 

@@ -5,7 +5,22 @@
     <projectFile profileName="HotelListing">HotelListing/HotelListing.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6922c928-b134-49b2-9050-ca95aaed825b" name="Changes" comment="&#10;Complete CountryController" />
+    <list default="true" id="6922c928-b134-49b2-9050-ca95aaed825b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/HotelListing/DTO/ExceptionHandler/ValidationException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/dataSources/4a847d98-168d-4be2-8cd8-c9dd46f80f71.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/dataSources/4a847d98-168d-4be2-8cd8-c9dd46f80f71.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/dataSources/6792f6e5-de72-422d-aa75-caade5712c74.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/dataSources/6792f6e5-de72-422d-aa75-caade5712c74.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelListing/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Controllers/AccountController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelListing/Controllers/CountryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Controllers/CountryController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelListing/Controllers/HotelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Controllers/HotelController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelListing/CustomExceptionMiddleware/ExceptionMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/CustomExceptionMiddleware/ExceptionMiddleware.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelListing/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Extensions/ServiceExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelListing/HotelListing.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/HotelListing.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelListing/Services/AuthenticationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Services/AuthenticationManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelListing/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelListing/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/appsettings.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +43,17 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/HotelListing/WeatherForecast.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/87f2533b25c04c8a8c059fbbf380363915000/32/SqlConnectionFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e44cf15cb8ea52aa3e3f88598aceef833a28f255664dc364bab1f122657f/Encoding.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c0cb4791745e4996f87d864d458984495daa094424acd52d16bfd18220ff/UTF8Encoding.Sealed.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cf90d73ce7cd9d5fc4505a61c731909d78ede13fc5bbc3e9363c10753b32bb/ConfigureNamedOptions.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="21HXVRKXeNhflkWXarss00qyH1I" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -46,8 +71,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="XThreadsFramesViewSplitterKey" value="0.24631579" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.HotelListing">
@@ -81,6 +107,10 @@
         <option name="Build" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.HotelListing" />
+      <item itemvalue=".NET Launch Settings Profile.HotelListing: IIS Express" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -92,6 +122,10 @@
       <updated>1637599016109</updated>
       <workItem from="1637599034806" duration="17973000" />
       <workItem from="1642271909635" duration="11786000" />
+      <workItem from="1647634928682" duration="10050000" />
+      <workItem from="1647971822986" duration="214000" />
+      <workItem from="1647972055698" duration="123000" />
+      <workItem from="1521742067401" duration="3191000" />
     </task>
     <task id="LOCAL-00001" summary="Create project">
       <created>1637602307564</created>
@@ -114,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642433655800</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add gitignore">
+      <created>1647635933879</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1647635933879</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,7 +174,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -141,7 +181,40 @@
     <MESSAGE value="Create project" />
     <MESSAGE value="Complete till Automapper section" />
     <MESSAGE value="&#10;Complete CountryController" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;Complete CountryController" />
+    <MESSAGE value="Add gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add gitignore" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/HotelListing/Controllers/AccountController.cs</url>
+          <line>75</line>
+          <properties documentPath="$PROJECT_DIR$/HotelListing/Controllers/AccountController.cs" initialLine="85" containingFunctionPresentation="method 'Login'">
+            <startOffsets>
+              <option value="2600" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2646" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/HotelListing/Controllers/AccountController.cs</url>
+          <line>69</line>
+          <properties documentPath="$PROJECT_DIR$/HotelListing/Controllers/AccountController.cs" initialLine="77" containingFunctionPresentation="method 'Login'">
+            <startOffsets>
+              <option value="2413" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2474" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

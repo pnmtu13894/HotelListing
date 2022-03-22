@@ -45,7 +45,9 @@ namespace HotelListing.Services
         #region Private methods
         private SigningCredentials GetSigningCredentials()
         {
-            var key = Environment.GetEnvironmentVariable("KEY");
+            var jwtSettings = _configuration.GetSection("Jwt");
+            // var key = Environment.GetEnvironmentVariable("KEY");
+            var key = jwtSettings.GetSection("KEY").Value;
             var secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
 
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HotelListing.DTO.ExceptionHandler;
 
 namespace HotelListing.Controllers
 {
@@ -26,19 +27,11 @@ namespace HotelListing.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAllHotels()
         {
-            try
-            {
-                var hotels = await _unitOfWork.Hotels.GetAll();
-                var results = _mapper.Map<IList<HotelDTO>>(hotels);
+            var hotels = await _unitOfWork.Hotels.GetAll();
+            var results = _mapper.Map<IList<HotelDTO>>(hotels);
 
 
-                return Ok(results);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, $"Something went wrong in the {nameof(GetAllHotels)}");
-                return StatusCode(500, "Internal Server Error. Please contact to administration team.");
-            }
+            return Ok(results);
         }
 
         [Authorize]
@@ -47,18 +40,15 @@ namespace HotelListing.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetHotelById(int id)
         {
-            try
-            {
-                var hotel = await _unitOfWork.Hotels.Get(x => x.Id == id, new List<string> { "Country" });
-                var result = _mapper.Map<HotelDTO>(hotel);
+            var hotel = await _unitOfWork.Hotels.Get(x => x.Id == id, new List<string> { "Country" });
+            var result = _mapper.Map<HotelDTO>(hotel);
 
-                return Ok(result);
-            }
-            catch (Exception e)
+            if (result == null)
             {
-                _logger.LogError(e, $"Something went wrong in the {nameof(GetHotelById)}");
-                return StatusCode(500, "Internal Server Error. Please contact to administration team.");
+                throw new ValidationException($"Hotel id {id} is not found!!!");
             }
+            
+            return Ok(ApiResonse<HotelDTO>.Success(result));
         }
 
         [Authorize]
@@ -68,26 +58,17 @@ namespace HotelListing.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> CreateHotel([FromBody] CreateHotelDTO hotelDTO)
         {
-
             if (!ModelState.IsValid)
             {
                 _logger.LogError($"Invalid post attempt in {nameof(CreateHotel)}");
                 return BadRequest();
             }
 
-            try
-            {
-                var hotel = _mapper.Map<Hotel>(hotelDTO);
-                await _unitOfWork.Hotels.Insert(hotel);
-                await _unitOfWork.SaveChanges();
+            var hotel = _mapper.Map<Hotel>(hotelDTO);
+            await _unitOfWork.Hotels.Insert(hotel);
+            await _unitOfWork.SaveChanges();
 
-                return CreatedAtRoute("GetHotel", new { id = hotel.Id }, hotel);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, $"Something went wrong in the {nameof(CreateHotel)}");
-                return StatusCode(500, "Internal Server Error. Please contact to administration team.");
-            }
+            return CreatedAtRoute("GetHotel", new { id = hotel.Id }, hotel);
         }
 
         [Authorize]
@@ -97,34 +78,26 @@ namespace HotelListing.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateHotel(int id, [FromBody] UpdateHotelDTO hotelDTO)
         {
-
             if (!ModelState.IsValid || id < 1)
             {
                 _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateHotel)}");
                 return BadRequest();
             }
 
-            try
+            var hotel = await _unitOfWork.Hotels.Get(x => x.Id == id);
+            if (hotel == null)
             {
-                var hotel = await _unitOfWork.Hotels.Get(x => x.Id == id);
-                if (hotel == null)
-                {
-                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateHotel)}");
-                    return BadRequest($"Hotel ID {id} does not exist in the system.");
-                }
-
-                _mapper.Map(hotelDTO, hotel);
-
-                _unitOfWork.Hotels.Update(hotel);
-                await _unitOfWork.SaveChanges();
-
-                return Ok($"Hotel {hotel.Name} updated successfully!!!");
+                throw new ValidationException($"Hotel ID {id} does not exist in the system.");
+                // _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateHotel)}");
+                // return BadRequest($"Hotel ID {id} does not exist in the system.");
             }
-            catch (Exception e)
-            {
-                _logger.LogError(e, $"Something went wrong in the {nameof(UpdateHotel)}");
-                return StatusCode(500, "Internal Server Error. Please contact to administration team.");
-            }
+
+            _mapper.Map(hotelDTO, hotel);
+
+            _unitOfWork.Hotels.Update(hotel);
+            await _unitOfWork.SaveChanges();
+
+            return Ok($"Hotel {hotel.Name} updated successfully!!!");
         }
 
         [Authorize]
@@ -141,25 +114,18 @@ namespace HotelListing.Controllers
                 return BadRequest();
             }
 
-            try
+            var hotel = await _unitOfWork.Hotels.Get(x => x.Id == id);
+            if (hotel == null)
             {
-                var hotel = await _unitOfWork.Hotels.Get(x => x.Id == id);
-                if (hotel == null)
-                {
-                    _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteHotel)}");
-                    return BadRequest($"Hotel ID {id} does not exist in the system.");
-                }
-
-                await _unitOfWork.Hotels.Delete(id);
-                await _unitOfWork.SaveChanges();
-
-                return NoContent();
+                throw new ValidationException($"Hotel ID {id} does not exist in the system.");
+                // _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteHotel)}");
+                // return BadRequest($"Hotel ID {id} does not exist in the system.");
             }
-            catch (Exception e)
-            {
-                _logger.LogError(e, $"Something went wrong in the {nameof(DeleteHotel)}");
-                return StatusCode(500, "Internal Server Error. Please contact to administration team.");
-            }
+
+            await _unitOfWork.Hotels.Delete(id);
+            await _unitOfWork.SaveChanges();
+
+            return NoContent();
         }
     }
 }

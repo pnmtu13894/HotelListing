@@ -18,6 +18,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AspNetCoreRateLimit;
+using Marvin.Cache.Headers;
 
 namespace HotelListing.Extensions
 {
@@ -40,8 +42,8 @@ namespace HotelListing.Extensions
         public static void ConfigureJWT(this IServiceCollection services, IConfiguration configuration)
         {
             var jwtSettings = configuration.GetSection("Jwt");
-            var key = Environment.GetEnvironmentVariable("KEY");
-
+            // var key = Environment.GetEnvironmentVariable("KEY");
+            var key = jwtSettings.GetSection(("KEY")).Value;
             services.AddAuthentication(o =>
             {
                 o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -121,6 +123,43 @@ namespace HotelListing.Extensions
                    }
                });
            });
+        }
+
+        public static void ConfigureHttpCacheHeaders(this IServiceCollection services)
+        {
+            services.AddResponseCaching();
+            services.AddHttpCacheHeaders(expirationOption =>
+                {
+                    expirationOption.MaxAge = 120;
+                    expirationOption.CacheLocation = CacheLocation.Private;
+                },
+                validationOpt =>
+                {
+                    validationOpt.MustRevalidate = true;
+                });
+            
+        }
+
+        public static void ConfigureRateLimiting(this IServiceCollection services)
+        {
+            var rateLimitRules = new List<RateLimitRule>
+            {
+                new RateLimitRule
+                {
+                    Endpoint = "*",
+                    Limit = 1,
+                    Period = "10s"
+                }
+            };
+
+            services.Configure<IpRateLimitOptions>(opt =>
+            {
+                opt.GeneralRules = rateLimitRules;
+            });
+
+            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
         }
     }
 }

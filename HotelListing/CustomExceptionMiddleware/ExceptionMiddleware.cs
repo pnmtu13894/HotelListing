@@ -34,9 +34,10 @@ namespace HotelListing.CustomExceptionMiddleware
                 switch (ex)
                 {
                     case BaseCustomException e:
-                        {
-                            response.StatusCode = StatusCodes.Status400BadRequest;
-                        }
+                        response.StatusCode = StatusCodes.Status400BadRequest;
+                        break;
+                    case ValidationException e:
+                        response.StatusCode = StatusCodes.Status400BadRequest;
                         break;
                     default:
                         response.StatusCode = StatusCodes.Status500InternalServerError;
