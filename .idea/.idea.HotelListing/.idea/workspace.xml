@@ -5,19 +5,14 @@
     <projectFile profileName="HotelListing">HotelListing/HotelListing.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6922c928-b134-49b2-9050-ca95aaed825b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/HotelListing/DTO/ExceptionHandler/ValidationException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/dataSources/4a847d98-168d-4be2-8cd8-c9dd46f80f71.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/dataSources/4a847d98-168d-4be2-8cd8-c9dd46f80f71.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/dataSources/6792f6e5-de72-422d-aa75-caade5712c74.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/dataSources/6792f6e5-de72-422d-aa75-caade5712c74.xml" afterDir="false" />
+    <list default="true" id="6922c928-b134-49b2-9050-ca95aaed825b" name="Changes" comment="Add Caching">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HotelListing/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HotelListing/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Controllers/AccountController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelListing/Controllers/CountryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Controllers/CountryController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelListing/Controllers/HotelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Controllers/HotelController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HotelListing/CustomExceptionMiddleware/ExceptionMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/CustomExceptionMiddleware/ExceptionMiddleware.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelListing/Extensions/ServiceExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Extensions/ServiceExtensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelListing/HotelListing.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/HotelListing.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HotelListing/Services/AuthenticationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Services/AuthenticationManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelListing/IRepository/IGeniricRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/IRepository/IGeniricRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelListing/Repository/GenericRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Repository/GenericRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelListing/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/Startup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelListing/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/HotelListing/appsettings.json" afterDir="false" />
     </list>
@@ -44,6 +39,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/HotelListing/WeatherForecast.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7f406eb34f74f9f813ac2ead03292c4516e00/df/ab395724/IQueryable`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/87f2533b25c04c8a8c059fbbf380363915000/32/SqlConnectionFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e44cf15cb8ea52aa3e3f88598aceef833a28f255664dc364bab1f122657f/Encoding.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c0cb4791745e4996f87d864d458984495daa094424acd52d16bfd18220ff/UTF8Encoding.Sealed.cs" root0="SKIP_HIGHLIGHTING" />
@@ -125,7 +121,7 @@
       <workItem from="1647634928682" duration="10050000" />
       <workItem from="1647971822986" duration="214000" />
       <workItem from="1647972055698" duration="123000" />
-      <workItem from="1521742067401" duration="3191000" />
+      <workItem from="1521742067401" duration="9392000" />
     </task>
     <task id="LOCAL-00001" summary="Create project">
       <created>1637602307564</created>
@@ -155,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647635933879</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add Caching">
+      <created>1647975827867</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1647975827867</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,7 +185,8 @@
     <MESSAGE value="Complete till Automapper section" />
     <MESSAGE value="&#10;Complete CountryController" />
     <MESSAGE value="Add gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add gitignore" />
+    <MESSAGE value="Add Caching" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Caching" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

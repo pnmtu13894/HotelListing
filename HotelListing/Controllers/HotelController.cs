@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HotelListing.DTO.ExceptionHandler;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelListing.Controllers
 {
@@ -40,7 +41,7 @@ namespace HotelListing.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetHotelById(int id)
         {
-            var hotel = await _unitOfWork.Hotels.Get(x => x.Id == id, new List<string> { "Country" });
+            var hotel = await _unitOfWork.Hotels.Get(x => x.Id == id, h => h.Include(x => x.Country).ThenInclude(y => y.Hotels));
             var result = _mapper.Map<HotelDTO>(hotel);
 
             if (result == null)

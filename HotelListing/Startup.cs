@@ -64,10 +64,7 @@ namespace HotelListing
 
             services.AddSwaggerDoc();
 
-            services.AddMemoryCache();
-            services.ConfigureRateLimiting();
-            services.AddHttpContextAccessor();
-            
+            services.ConfigureRateLimiting(Configuration);
             services.ConfigureHttpCacheHeaders();
         }
 
@@ -96,8 +93,7 @@ namespace HotelListing
 
             app.UseResponseCaching();
             app.UseHttpCacheHeaders();
-            // app.UseIpRateLimiting();
-            // app.UseIpRateLimiting();
+            app.UseIpRateLimiting();
             
             app.UseEndpoints(endpoints =>
             {

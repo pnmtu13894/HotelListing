@@ -10,6 +10,7 @@ using HotelListing.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
@@ -39,7 +40,7 @@ namespace HotelListing.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetCountryById(int id)
         {
-            var country = await _unitOfWork.Countries.Get(x => x.Id == id, new List<string> { "Hotels" });
+            var country = await _unitOfWork.Countries.Get(x => x.Id == id, q => q.Include(x => x.Hotels));
             var result = _mapper.Map<CountryDTO>(country);
 
             return Ok(result);
@@ -107,7 +108,7 @@ namespace HotelListing.Controllers
                 _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteCountry)}");
                 return BadRequest();
             }
-            var country = await _unitOfWork.Countries.Get(x => x.Id == id, new List<string> { "Hotels" });
+            var country = await _unitOfWork.Countries.Get(x => x.Id == id, q => q.Include(x => x.Hotels));
             if (country == null)
             {
                 _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteCountry)}");

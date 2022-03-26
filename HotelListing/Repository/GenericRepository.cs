@@ -7,6 +7,7 @@ using HotelListing.DataAccess;
 using HotelListing.DTO.Paging;
 using HotelListing.IRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using X.PagedList;
 
 namespace HotelListing.Repository
@@ -15,6 +16,7 @@ namespace HotelListing.Repository
     {
         private readonly DatabaseContext _dbContext;
         private readonly DbSet<T> _db;
+        private IGeniricRepository<T> _geniricRepositoryImplementation;
 
         public GenericRepository(DatabaseContext context)
         {
@@ -22,7 +24,7 @@ namespace HotelListing.Repository
             _db = _dbContext.Set<T>();
         }
 
-        public async Task<IList<T>> GetAll(Expression<Func<T, bool>> expression = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, List<string> includes = null)
+        public async Task<IList<T>> GetAll(Expression<Func<T, bool>> expression = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
             IQueryable<T> query = _db;
 
@@ -31,12 +33,9 @@ namespace HotelListing.Repository
                 query = query.Where(expression);
             }
             
-            if (includes != null)
+            if (include != null)
             {
-                foreach (var incProp in includes)
-                {
-                    query = query.Include(incProp);
-                }
+                query = include(query);
             }
 
             if (orderBy != null)
@@ -47,15 +46,12 @@ namespace HotelListing.Repository
             return await query.AsNoTracking().ToListAsync();
         }
 
-        public async Task<T> Get(Expression<Func<T, bool>> expression, List<string> includes = null)
+        public async Task<T> Get(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
             IQueryable<T> query = _db;
-            if(includes != null)
+            if(include != null)
             {
-                foreach (var includeProp in includes)
-                {
-                    query = query.Include(includeProp);
-                }
+                query = include(query);
             }
 
             return await query.AsNoTracking().FirstOrDefaultAsync(expression);
@@ -88,16 +84,13 @@ namespace HotelListing.Repository
             _dbContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public async Task<X.PagedList.IPagedList<T>> GetPagedList(RequestParam requestParams, List<string> includes = null)
+        public async Task<X.PagedList.IPagedList<T>> GetPagedList(RequestParam requestParams, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
             IQueryable<T> query = _db;
 
-            if (includes != null)
+            if (include != null)
             {
-                foreach (var incProp in includes)
-                {
-                    query = query.Include(incProp);
-                }
+                query = include(query);
             }
 
             return await query.AsNoTracking().ToPagedListAsync(requestParams.PageNumber, requestParams.PageSize);

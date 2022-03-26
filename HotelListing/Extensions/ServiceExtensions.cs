@@ -20,6 +20,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AspNetCoreRateLimit;
 using Marvin.Cache.Headers;
+using StackExchange.Redis;
 
 namespace HotelListing.Extensions
 {
@@ -140,26 +141,17 @@ namespace HotelListing.Extensions
             
         }
 
-        public static void ConfigureRateLimiting(this IServiceCollection services)
+        public static void ConfigureRateLimiting(this IServiceCollection services, IConfiguration configuration)
         {
-            var rateLimitRules = new List<RateLimitRule>
-            {
-                new RateLimitRule
-                {
-                    Endpoint = "*",
-                    Limit = 1,
-                    Period = "10s"
-                }
-            };
+            services.AddMemoryCache();
+            services.Configure<IpRateLimitOptions>(configuration.GetSection("IpRateLimiting"));
 
-            services.Configure<IpRateLimitOptions>(opt =>
-            {
-                opt.GeneralRules = rateLimitRules;
-            });
 
+            services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
             services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
             services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
             services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+            services.AddInMemoryRateLimiting();
         }
     }
 }
